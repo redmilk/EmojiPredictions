@@ -34,8 +34,3 @@ read:
   - RepoAI/module-map.md
   - RepoAI/tasks.md                # <- add this
 
-Output format:
-- Return a unified diff only. No code fences, no shell commands, no extra prose before the diff.
-- After the diff, add:
-  RATIONALE:
-  EDGE CASES: (5 bullets)
