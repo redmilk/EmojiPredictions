@@ -21,8 +21,11 @@ fastlane/test_output
 RepoAI/.log/
 RepoAI/.context/
 
-# Aider local files
+# Aider local junk
 .aider.chat.history.md
 .aider.input.history
 cache.db
+prompt_system.txt
+Hello world
+
 
