@@ -1,9 +1,17 @@
+# Ignore build artifacts & package managers
 Pods/
 DerivedData/
-**/*.xcassets/
 Carthage/
 .build/
+
+# Xcode transient files
 *.xcuserstate
 *.xccheckout
 xcuserdata/
+
+# Large resources (not useful for AI context)
+**/*.xcassets/
+
+# Aider logs (don’t feed back into prompts)
 RepoAI/.log/
+RepoAI/.context/

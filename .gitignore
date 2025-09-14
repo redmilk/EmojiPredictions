@@ -3,15 +3,20 @@ xcuserdata/
 *.xccheckout
 *.xcuserstate
 DerivedData/
+
 # SwiftPM
 .build/
+
 # CocoaPods
 Pods/
+
 # Carthage
 Carthage/Build/
+
 # Fastlane
 fastlane/report.xml
 fastlane/test_output
-# Logs
+
+# Aider (local only)
 RepoAI/.log/
 RepoAI/.context/
