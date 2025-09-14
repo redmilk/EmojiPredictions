@@ -1,15 +1,22 @@
 git: true
-gitignore: true
+gitignore: true         # optional; safe to keep or omit
 editor: diffs
 model: gpt-4o
 weak-model: gpt-4o-mini
 
-# Files aider can read/modify
+# Solo-friendly defaults
+auto-commits: true
+auto-test: false
+auto-lint: false
+
+# No interactive shell stuff (prevents weird folders)
+yes-always: true
+suggest-shell-commands: false
+
+# Files Aider may read/modify
 files:
   include:
     - "**/*.swift"
-    - "**/*.xcodeproj/**"
-    - "**/*.xcworkspace/**"
     - "Package.swift"
     - "README.md"
     - "RepoAI/**/*.md"
@@ -18,18 +25,12 @@ files:
     - "Pods/**"
     - "DerivedData/**"
     - "**/*.xcassets/**"
+    - "RepoAI/.log/**"      # optional safety
 
-# Always load these as context
+# Always load these as context (read-only to Aider)
 read:
   - RepoAI/prompt_system.txt
   - RepoAI/style.md
   - RepoAI/module-map.md
-
-# Safer defaults for solo development
-auto-commits: true      # commits each change automatically
-auto-test: false        # don’t run tests automatically
-auto-lint: false        # don’t run lint automatically
-
-# cut the prompts:
-yes-always: true               # auto-yes to all confirmations
-suggest-shell-commands: false  # don’t even suggest/run shell cmds
+  # If you ever need project metadata as context (NOT for editing), uncomment:
+  # - "EmojiPredictions.xcodeproj/project.pbxproj"
