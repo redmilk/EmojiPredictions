@@ -13,3 +13,6 @@ read:
 dark-mode: true
 pretty: true
 auto-commits: true
+
+auto-test: false
+auto-lint: false
