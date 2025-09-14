@@ -20,3 +20,9 @@ fastlane/test_output
 # Aider (local only)
 RepoAI/.log/
 RepoAI/.context/
+
+# Aider local files
+.aider.chat.history.md
+.aider.input.history
+cache.db
+
