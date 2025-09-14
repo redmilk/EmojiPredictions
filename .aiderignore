@@ -1,0 +1,9 @@
+Pods/
+DerivedData/
+**/*.xcassets/
+Carthage/
+.build/
+*.xcuserstate
+*.xccheckout
+xcuserdata/
+RepoAI/.log/

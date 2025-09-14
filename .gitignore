@@ -14,3 +14,4 @@ fastlane/report.xml
 fastlane/test_output
 # Logs
 RepoAI/.log/
+RepoAI/.context/
