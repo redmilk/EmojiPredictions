@@ -63,4 +63,4 @@ ln -sf "$(basename "${ctx}")" "${latest}"
 
 log="RepoAI/.log/${ts}.log"
 echo "[repoai] Task: ${task}"
-aider -m gpt-4o "${task}" | tee "${log}"
+aider -m gpt-4o --message "${task}" | tee "${log}"
