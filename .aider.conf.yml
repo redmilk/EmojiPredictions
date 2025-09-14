@@ -1,18 +1,31 @@
 git: true
-model: gpt-4o
 editor: diffs
+model: gpt-4o
+weak-model: gpt-4o-mini
+no-gitignore: true
 
-# Preload these docs as read-only context
+# Files aider can read/modify
+files:
+  include:
+    - "**/*.swift"
+    - "**/*.xcodeproj/**"
+    - "**/*.xcworkspace/**"
+    - "Package.swift"
+    - "README.md"
+    - "RepoAI/**/*.md"
+    - "RepoAI/prompt_system.txt"
+  exclude:
+    - "Pods/**"
+    - "DerivedData/**"
+    - "**/*.xcassets/**"
+
+# Always load these as context
 read:
   - RepoAI/prompt_system.txt
   - RepoAI/style.md
   - RepoAI/module-map.md
-  - RepoAI/.context/latest.md
 
-# Nice-to-haves
-dark-mode: true
-pretty: true
-auto-commits: true
-
-auto-test: false
-auto-lint: false
+# Safer defaults for solo development
+auto-commits: true      # commits each change automatically
+auto-test: false        # don’t run tests automatically
+auto-lint: false        # don’t run lint automatically
