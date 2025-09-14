@@ -1,8 +1,8 @@
 git: true
+gitignore: true
 editor: diffs
 model: gpt-4o
 weak-model: gpt-4o-mini
-no-gitignore: true
 
 # Files aider can read/modify
 files:
@@ -29,3 +29,7 @@ read:
 auto-commits: true      # commits each change automatically
 auto-test: false        # don’t run tests automatically
 auto-lint: false        # don’t run lint automatically
+
+# cut the prompts:
+yes-always: true               # auto-yes to all confirmations
+suggest-shell-commands: false  # don’t even suggest/run shell cmds
