@@ -1,0 +1,13 @@
+Project guardrails:
+- iOS target: 15.0+ ; prefer Swift Concurrency (async/await) over GCD.
+- Architecture: MVVM; DI via lightweight container; avoid singletons.
+- Networking: central APIClient protocol; no direct URLSession in features.
+- Logging: use OSLog/Logger; no print in production code.
+- Testing: XCTest, fast deterministic tests; no live network in tests.
+
+Deliverables for each task:
+1) Unified diff (apply cleanly),
+2) Unit tests,
+3) Short rationale with 5 edge cases.
+
+If context seems missing, list exact file paths you need.

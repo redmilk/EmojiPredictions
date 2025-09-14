@@ -1,0 +1,21 @@
+git: true
+model: gpt-4o
+editor: diffs
+files:
+  include:
+    - "**/*.swift"
+    - "**/*.xcodeproj/**"
+    - "**/*.xcworkspace/**"
+    - "Package.swift"
+    - "README.md"
+    - "RepoAI/**/*.md"
+    - "RepoAI/prompt_system.txt"
+  exclude:
+    - "Pods/**"
+    - "DerivedData/**"
+    - "**/*.xcassets/**"
+read:
+  - RepoAI/prompt_system.txt
+  - RepoAI/style.md
+  - RepoAI/module-map.md
+  - RepoAI/.context/latest.md

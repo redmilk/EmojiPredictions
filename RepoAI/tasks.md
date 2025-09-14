@@ -1,0 +1,8 @@
+1) "Create AppDI container with protocols (APIClient, Persistence, Analytics); wire into @main App via Environment."
+2) "Add APIClient protocol + default async/await impl; URLProtocol-based mock + tests."
+3) "Add NavigationStack (Home/Settings) with router enum + previews."
+4) "Implement HomeView + HomeViewModel counter (+/–) + VM unit tests."
+5) "SettingsView with toggle stored via SettingsStore (UserDefaults) + tests."
+6) "Logger wrapper replacing print; ensure no logs in Release (#if DEBUG) + tests."
+7) "TestUtilities target with mocks/fixtures + XCT helpers."
+8) "Networking policy: RequestBuilder + Endpoint enum; decoding/error model + tests."

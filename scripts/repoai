@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+task="${*:-}"
+if [[ -z "${task}" ]]; then
+  echo "Usage: repoai \"Implement X\"" >&2
+  exit 1
+fi
+
+mkdir -p RepoAI/.log RepoAI/.context
+
+ts="$(date +%Y%m%d-%H%M%S)"
+ctx="RepoAI/.context/${ts}.md"
+latest="RepoAI/.context/latest.md"
+
+{
+  echo "# Repo Context — ${ts}"
+  echo
+  echo "## Repo tree (top 2 levels)"
+  if command -v tree >/dev/null 2>&1; then
+    tree -L 2 -I "Pods|DerivedData|.git|Carthage|.build|*.xcassets"
+  else
+    find . -maxdepth 2 -type d \
+      -not -path "*/Pods/*" -not -path "*/DerivedData/*" -not -path "*/.git/*" \
+      -not -path "*/Carthage/*" -not -path "*/.build/*" | sort
+  fi
+
+  echo
+  echo "## TODO/FIXME"
+  if command -v rg >/dev/null 2>&1; then
+    rg -n --no-ignore -S "TODO|FIXME" --glob '!*Pods/*' --glob '!DerivedData/*' || true
+  fi
+
+  echo
+  echo "## Public types (first lines)"
+  if command -v rg >/dev/null 2>&1; then
+    rg -n "^\s*(public\s+)?(protocol|class|struct|enum)\s+\w+" \
+      --glob '!Pods/**' --glob '!DerivedData/**' --glob '**/*.swift' | head -n 400 || true
+  fi
+
+  echo
+  echo "## Function signatures (truncated)"
+  if command -v rg >/dev/null 2>&1; then
+    rg -n "^(\\s*(public\\s+)?)?func\\s+\\w+\\(" \
+      --glob '!Pods/**' --glob '!DerivedData/**' --glob '**/*.swift' | head -n 400 || true
+  fi
+
+  echo
+  echo "## Recent commits"
+  git log --oneline -n 20 || true
+
+  echo
+  echo "## README.md"
+  [[ -f README.md ]] && sed -n '1,200p' README.md || true
+
+  echo
+  echo "## Module map"
+  [[ -f RepoAI/module-map.md ]] && sed -n '1,200p' RepoAI/module-map.md || true
+
+} > "${ctx}"
+
+ln -sf "$(basename "${ctx}")" "${latest}"
+
+log="RepoAI/.log/${ts}.log"
+echo "[repoai] Task: ${task}"
+aider -m gpt-4o "${task}" | tee "${log}"

@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+task="${*:?Usage: repoai-pr \"Implement X\"}"
+
+branch="ai/$(date +%y%m%d-%H%M)-$(echo "$task" | tr ' ' '-' | tr -cd '[:alnum:]-' | cut -c1-48)"
+git checkout -b "$branch"
+
+# Build context + run aider
+./scripts/repoai "$task"
+
+git status
+git add -A
+git commit -m "AI: $task" || true
+git push -u origin "$branch"
+
+# Open Merge Request on GitLab
+glab mr create --title "AI: $task" --fill
