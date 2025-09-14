@@ -15,3 +15,7 @@ xcuserdata/
 # Aider logs (don’t feed back into prompts)
 RepoAI/.log/
 RepoAI/.context/
+
+--files=*/
+Create a HomeView*/
+

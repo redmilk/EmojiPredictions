@@ -13,24 +13,29 @@ auto-lint: false
 yes-always: true
 suggest-shell-commands: false
 
-# Files Aider may read/modify
+# Files Aider may read/modify (keep docs read-only to avoid accidental edits)
 files:
   include:
     - "**/*.swift"
     - "Package.swift"
     - "README.md"
-    - "RepoAI/**/*.md"
-    - "RepoAI/prompt_system.txt"
+    - "RepoAI/prompt_system.txt"   # editable if you want
   exclude:
     - "Pods/**"
     - "DerivedData/**"
     - "**/*.xcassets/**"
-    - "RepoAI/.log/**"      # optional safety
+    - "RepoAI/.log/**"
+    - "RepoAI/.context/**"         # <- add this
 
-# Always load these as context (read-only to Aider)
+# Always load these as context (read-only)
 read:
   - RepoAI/prompt_system.txt
   - RepoAI/style.md
   - RepoAI/module-map.md
-  # If you ever need project metadata as context (NOT for editing), uncomment:
-  # - "EmojiPredictions.xcodeproj/project.pbxproj"
+  - RepoAI/tasks.md                # <- add this
+
+Output format:
+- Return a unified diff only. No code fences, no shell commands, no extra prose before the diff.
+- After the diff, add:
+  RATIONALE:
+  EDGE CASES: (5 bullets)
