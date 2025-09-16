@@ -17,9 +17,7 @@ final class EmojiCatalog {
 class HomeScreenViewModel: ObservableObject {
     @Published var emojiText: String = ""
     
-    private let emojiPool: [String] = ["😀", "😅", "🥳", "🤔", "😎", "🤯", "😴", "🤩", "❤️", "🔥", "🌊", "🐱", "🐶", "🦄", "🍕", "🍔", "⚽️", "🎵"]
-
     func generateEmojis() {
-        emojiText = (0..<4).compactMap { _ in emojiPool.randomElement() }.joined()
+        emojiText = (0..<4).compactMap { _ in EmojiCatalog.allSingleScalars.randomElement() }.joined()
     }
 }
