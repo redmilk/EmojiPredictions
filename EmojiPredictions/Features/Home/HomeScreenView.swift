@@ -13,7 +13,9 @@ struct HomeScreenView: View {
                     .padding()
                 
                 Button(action: {
-                    viewModel.generateEmojis()
+                    viewModel.animateEmojiChange {
+                        // Completion handler if needed
+                    }
                 }) {
                     Text("Generate Emojis")
                 }
