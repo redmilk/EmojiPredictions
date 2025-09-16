@@ -5,7 +5,7 @@ final class EmojiCatalog {
         (0...0x10FFFF).compactMap { codePoint in
             guard let scalar = UnicodeScalar(codePoint),
                   scalar.properties.isEmoji,
-                  scalar.properties.isEmojiPresentation || scalar.properties.isEmojiModifierBase else {
+                  (scalar.properties.isEmojiPresentation || scalar.properties.isEmojiModifierBase) else {
                 return nil
             }
             return String(scalar)
