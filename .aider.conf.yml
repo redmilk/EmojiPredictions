@@ -11,21 +11,7 @@ auto-lint: false
 
 # No interactive shell stuff (prevents weird folders)
 yes-always: true
-suggest-shell-commands: false
-
-# Files Aider may read/modify (keep docs read-only to avoid accidental edits)
-files:
-  include:
-    - "**/*.swift"
-    - "Package.swift"
-    - "README.md"
-    - "RepoAI/prompt_system.txt"   # editable if you want
-  exclude:
-    - "Pods/**"
-    - "DerivedData/**"
-    - "**/*.xcassets/**"
-    - "RepoAI/.log/**"
-    - "RepoAI/.context/**"         # <- add this
+suggest-shell-commands: true
 
 # Always load these as context (read-only)
 read:
